@@ -17,6 +17,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="ID"
             android:textColor="@color/carrot"
             android:textSize="20sp" />
@@ -31,6 +32,7 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginStart="5dp"
             android:text="Password"
             android:textColor="@color/carrot"
             android:textSize="20sp" />
