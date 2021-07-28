@@ -10,6 +10,7 @@ class LogInActivity : AppCompatActivity() {
         findViewById(R.id.btnJoin)
     }
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
