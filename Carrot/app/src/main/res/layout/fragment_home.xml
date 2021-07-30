@@ -16,6 +16,7 @@
         app:layout_constraintBottom_toBottomOf="parent"/>
 
     <Button
+        android:id="@+id/btnAdd"
         android:layout_width="50dp"
         android:layout_height="50dp"
         app:layout_constraintBottom_toBottomOf="parent"
