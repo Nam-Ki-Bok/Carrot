@@ -2,6 +2,7 @@ package com.example.carrot
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.Menu
 import android.view.MenuItem
 import androidx.fragment.app.Fragment
 import com.example.carrot.Fragment.ChatFragment
@@ -30,6 +31,8 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initNavigationBar()
+        setSupportActionBar(toolBar)
+        supportActionBar?.setDisplayShowTitleEnabled(false)
     }
 
     private fun initNavigationBar() {
@@ -60,5 +63,19 @@ class MainActivity : AppCompatActivity() {
             .beginTransaction()
             .replace(R.id.fragmentFrame, fragment)
             .commit()
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_toolbar, menu)
+        return super.onCreateOptionsMenu(menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item?.itemId) {
+            R.id.menuSearch -> {
+                //TODO Search 버튼 눌렀을 때 행동
+            }
+        }
+        return super.onOptionsItemSelected(item)
     }
 }
