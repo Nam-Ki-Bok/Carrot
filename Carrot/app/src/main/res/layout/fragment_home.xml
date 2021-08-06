@@ -7,6 +7,7 @@
     tools:context=".Fragment.HomeFragment">
 
     <ListView
+        android:layout_margin="10dp"
         android:id="@+id/lvHome"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
