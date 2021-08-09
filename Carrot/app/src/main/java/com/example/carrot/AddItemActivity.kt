@@ -3,16 +3,22 @@ package com.example.carrot
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
+import androidx.core.view.drawToBitmap
+import androidx.fragment.app.Fragment
+import com.example.carrot.Fragment.HomeFragment
 import kotlinx.android.synthetic.main.activity_additem.*
 import kotlinx.android.synthetic.main.activity_main.*
 
@@ -27,6 +33,18 @@ class AddItemActivity : AppCompatActivity() {
             add(findViewById(R.id.img2))
             add(findViewById(R.id.img3))
         }
+    }
+
+    private val etTitle: EditText by lazy {
+        findViewById(R.id.etTitle)
+    }
+
+    private val etPrice: EditText by lazy {
+        findViewById(R.id.etPrice)
+    }
+
+    private val etMainText: EditText by lazy {
+        findViewById(R.id.etMainText)
     }
 
     private val imageUriList: MutableList<Uri> = mutableListOf()
@@ -57,6 +75,7 @@ class AddItemActivity : AppCompatActivity() {
             }
             R.id.itemCompletion -> {
                 //TODO 완료버튼 눌렀을 때 이벤트 처리
+                setDataAtFragment(HomeFragment())
                 finish()
                 return true
             }
@@ -152,5 +171,18 @@ class AddItemActivity : AppCompatActivity() {
                 Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
             }
         }
+    }
+
+    //프래그먼트에 데이터 전달하기
+    private fun setDataAtFragment(fragment: Fragment) {
+        val bundle = Bundle()
+        imageUriList.forEachIndexed { index, uri ->
+            bundle.putString("image$index", uri.toString())
+            bundle.putString("title", etTitle.text.toString())
+            bundle.putString("price", etPrice.text.toString())
+            bundle.putString("mainText", etMainText.toString())
+        }
+
+        fragment.arguments = bundle
     }
 }
