@@ -11,6 +11,7 @@ import com.example.carrot.Fragment.LifeFragment
 import com.example.carrot.Fragment.UserFragment
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : AppCompatActivity() {
     private val HomeFragment by lazy {
@@ -33,6 +34,7 @@ class MainActivity : AppCompatActivity() {
         initNavigationBar()
         setSupportActionBar(toolBar)
         supportActionBar?.setDisplayShowTitleEnabled(false)
+
     }
 
     private fun initNavigationBar() {

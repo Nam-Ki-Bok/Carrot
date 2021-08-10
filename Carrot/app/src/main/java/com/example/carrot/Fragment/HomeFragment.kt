@@ -13,6 +13,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentTransaction
 import com.example.carrot.Adapter.ListViewAdapter
 import com.example.carrot.AddItemActivity
 import com.example.carrot.Item.ListViewItem
@@ -26,20 +28,15 @@ class HomeFragment : Fragment() {
         view.btnAdd.setOnClickListener {
             startActivity(Intent(activity, AddItemActivity::class.java))
         }
+
         return view
-
-
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val intent = Intent(activity, AddItemActivity::class.java)
-        val size = intent.getIntExtra("ImageList", 0)
 
 
-        val items = mutableListOf<ListViewItem>()
-
-
+        //TODO item에 데이터 추가 시 사용하는 코드
         //items.add(ListViewItem(ContextCompat.getDrawable(this, )!!, "", ""))
 
         //val adapter = ListViewAdapter(items)
@@ -57,8 +54,4 @@ class HomeFragment : Fragment() {
 
     }
 
-    private fun refresh() {
-        Log.d("refresh", "완료")
-        pullToRefresh.isRefreshing = false
-    }
 }
