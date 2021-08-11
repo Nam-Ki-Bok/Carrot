@@ -11,7 +11,7 @@ import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carrot.R
-import com.example.carrot.TestData
+import com.example.carrot.View.TestData
 import org.w3c.dom.Text
 
 class ListAdapter(private val list: ArrayList<TestData>): RecyclerView.Adapter<ListAdapter.ListItemViewHolder>() {

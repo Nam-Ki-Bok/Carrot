@@ -113,7 +113,7 @@
             android:id="@+id/etTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:Lines="1"
+            android:maxLines="1"
             android:background="@null"
             android:hint="글 제목"
             android:textColorHint="@color/divider_gray"

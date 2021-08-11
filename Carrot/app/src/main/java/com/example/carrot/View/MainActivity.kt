@@ -11,6 +11,7 @@ import com.example.carrot.Fragment.LifeFragment
 import com.example.carrot.Fragment.UserFragment
 import com.example.carrot.R
 import kotlinx.android.synthetic.main.activity_main.*
+import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : AppCompatActivity() {
     private val HomeFragment by lazy {
@@ -31,13 +32,11 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         initNavigationBar()
-        setSupportActionBar(toolBar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
 
     }
 
     private fun initNavigationBar() {
-        navigationBar.run {
+        bottomNavigation.run {
             setOnNavigationItemSelectedListener {
                 when (it.itemId) {
                     R.id.homeItem -> {
@@ -62,7 +61,7 @@ class MainActivity : AppCompatActivity() {
     private fun changeFragment(fragment: Fragment) {
         supportFragmentManager
             .beginTransaction()
-            .replace(R.id.fragmentFrame, fragment)
+            .replace(R.id.fragmentContainer, fragment)
             .commit()
     }
 
@@ -71,12 +70,4 @@ class MainActivity : AppCompatActivity() {
         return super.onCreateOptionsMenu(menu)
     }
 
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item?.itemId) {
-            R.id.menuSearch -> {
-                //TODO Search 버튼 눌렀을 때 행동
-            }
-        }
-        return super.onOptionsItemSelected(item)
-    }
 }

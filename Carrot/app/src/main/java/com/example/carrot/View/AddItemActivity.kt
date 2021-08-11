@@ -44,17 +44,6 @@ class TestData (
     }
 }
 class AddItemActivity : AppCompatActivity() {
-    private val btnAddImage: Button by lazy {
-        findViewById(R.id.btnAddImage)
-    }
-
-    private val imageViewList: List<ImageView> by lazy {
-        mutableListOf<ImageView>().apply {
-            add(findViewById(R.id.img1))
-            add(findViewById(R.id.img2))
-            add(findViewById(R.id.img3))
-        }
-    }
 
     private val etTitle: EditText by lazy {
         findViewById(R.id.etTitle)
@@ -75,11 +64,9 @@ class AddItemActivity : AppCompatActivity() {
         setContentView(R.layout.activity_additem)
 
         setSupportActionBar(addItemToolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
-        initBtnAddImage()
+        //initBtnAddImage()
 
     }
 
@@ -105,6 +92,7 @@ class AddItemActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
+    /*
     private fun initBtnAddImage() {
         btnAddImage.setOnClickListener {
             when {
@@ -125,6 +113,8 @@ class AddItemActivity : AppCompatActivity() {
             }
         }
     }
+
+     */
 
     override fun onRequestPermissionsResult(
         requestCode: Int,
@@ -184,7 +174,7 @@ class AddItemActivity : AppCompatActivity() {
                         return
                     }
                     imageUriList.add(selectedImageUri)
-                    imageViewList[imageUriList.size - 1].setImageURI(selectedImageUri)
+                    //imageViewList[imageUriList.size - 1].setImageURI(selectedImageUri)
                 } else {
                     Toast.makeText(this, "사진을 가져오지 못했습니다.", Toast.LENGTH_SHORT).show()
                 }
@@ -205,10 +195,10 @@ class AddItemActivity : AppCompatActivity() {
         }
 
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(
-            R.id.lvHome,
-            HomeFragment()
-        )
+        //transaction.replace(
+            //R.id.lvHome,
+            //HomeFragment()
+        //)
         transaction.commit()
 
         intent.putExtra("data", dataList)

@@ -7,35 +7,53 @@
     tools:context=".Fragment.HomeFragment">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/homeToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
         android:elevation="1dp"
-        app:contentInsetStart="5dp"
-        app:menu="@menu/"
+        app:contentInsetStart="20dp"
+        app:menu="@menu/menu_home_toolbar"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:popupTheme="@style/toolbarMenuTextStyle"
+        app:title="당근마켓 🥕"
+        app:titleTextColor="@color/carrot"
+        app:titleTextAppearance="@style/toolbarTitleStyle" />
+
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/pullToRefresh"
+        android:id="@+id/layoutSwipe"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@id/homeToolbar"
+        app:layout_constraintVertical_bias="1.0">
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/lvHome"
+            android:id="@+id/rvSale"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
+            android:layout_height="match_parent"
+            android:paddingLeft="20dp"
+            android:paddingRight="20dp" />
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
 
-    <Button
-        android:id="@+id/btnAdd"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/ic_baseline_add_circle_24"
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/btnWriteSale"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_gravity="end|right"
+        android:src="@drawable/ic_add"
+        android:tint="@color/white"
+        app:maxImageSize="25dp"
+        android:backgroundTint="@color/carrot"
+        app:fabSize="normal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

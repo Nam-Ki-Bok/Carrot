@@ -13,8 +13,6 @@ class ItemSelectedActivity : AppCompatActivity() {
         setContentView(R.layout.activity_itemselected)
 
         setSupportActionBar(addItemToolbar)
-        supportActionBar?.setDisplayShowTitleEnabled(false)
-        supportActionBar?.setHomeAsUpIndicator(R.drawable.ic_baseline_arrow_back_24)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
     }
 }
