@@ -1,4 +1,4 @@
-package com.example.carrot
+package com.example.carrot.View
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,9 +9,8 @@ import com.example.carrot.Fragment.ChatFragment
 import com.example.carrot.Fragment.HomeFragment
 import com.example.carrot.Fragment.LifeFragment
 import com.example.carrot.Fragment.UserFragment
-import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.example.carrot.R
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.fragment_home.*
 
 class MainActivity : AppCompatActivity() {
     private val HomeFragment by lazy {

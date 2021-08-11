@@ -1,4 +1,4 @@
-package com.example.carrot
+package com.example.carrot.View
 
 import android.app.Activity
 import android.content.Intent
@@ -19,9 +19,34 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.drawToBitmap
 import androidx.fragment.app.Fragment
 import com.example.carrot.Fragment.HomeFragment
+import com.example.carrot.R
 import kotlinx.android.synthetic.main.activity_additem.*
 import kotlinx.android.synthetic.main.activity_main.*
 
+class TestData (
+    private var image: String? = null,
+    private var title: String? = null,
+    private var price: String? =null
+) {
+    fun getImage(): String? {
+        return image
+    }
+    fun setImage(image: String) {
+        this.image = image
+    }
+    fun getTitle(): String? {
+        return title
+    }
+    fun setTitle(title: String) {
+        this.title = title
+    }
+    fun getPrice(): String? {
+        return price
+    }
+    fun setPrice(price: String) {
+        this.price = price
+    }
+}
 class AddItemActivity : AppCompatActivity() {
     private val btnAddImage: Button by lazy {
         findViewById(R.id.btnAddImage)
@@ -59,6 +84,7 @@ class AddItemActivity : AppCompatActivity() {
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
 
         initBtnAddImage()
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -75,7 +101,7 @@ class AddItemActivity : AppCompatActivity() {
             }
             R.id.itemCompletion -> {
                 //TODO 완료버튼 눌렀을 때 이벤트 처리
-                setDataAtFragment(HomeFragment())
+                setDataAtFragment()
                 finish()
                 return true
             }
@@ -174,15 +200,21 @@ class AddItemActivity : AppCompatActivity() {
     }
 
     //프래그먼트에 데이터 전달하기
-    private fun setDataAtFragment(fragment: Fragment) {
-        val bundle = Bundle()
+    private fun setDataAtFragment() {
+
+        var dataList : ArrayList<TestData>? = null
+
         imageUriList.forEachIndexed { index, uri ->
-            bundle.putString("image$index", uri.toString())
-            bundle.putString("title", etTitle.text.toString())
-            bundle.putString("price", etPrice.text.toString())
-            bundle.putString("mainText", etMainText.toString())
+            dataList = arrayListOf(TestData(uri.toString(), etTitle.text.toString(), etPrice.text.toString()))
         }
 
-        fragment.arguments = bundle
+        val transaction = supportFragmentManager.beginTransaction()
+        transaction.replace(
+            R.id.lvHome,
+            HomeFragment()
+        )
+        transaction.commit()
+
+        intent.putExtra("data", dataList)
     }
 }

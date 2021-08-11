@@ -3,24 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".View.AddItemActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/addItemToolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
-        tools:ignore="MissingConstraints">
+        android:elevation="1dp"
+        tools:ignore="MissingConstraints"
+        app:title="중고거래 글쓰기"
+        app:titleTextAppearance="@style/toolbarTitleStyle"
+        app:menu="@menu/"
+        >
 
-        <TextView
-            android:id="@+id/addItemTitle"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="중고거래 글쓰기"
-            android:textColor="@color/carrot"
-            android:textSize="25sp"
-            android:textStyle="bold" />
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.constraintlayout.widget.ConstraintLayout

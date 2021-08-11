@@ -11,17 +11,18 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Carrot">
-        <activity android:name=".LogInActivity">
+        <activity android:name=".View.LogInActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".JoinActivity" >
+        <activity android:name=".View.JoinActivity" >
         </activity>
 
-        <activity android:name=".MainActivity" />
+        <activity android:name=".View.MainActivity" />
         <activity android:name=".AddItemActivity" />
+        <activity android:name=".View.ItemSelectedActivity" />
     </application>
 </manifest>

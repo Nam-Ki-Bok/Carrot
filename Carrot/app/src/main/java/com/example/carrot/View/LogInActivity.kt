@@ -1,10 +1,11 @@
-package com.example.carrot
+package com.example.carrot.View
 
 import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
+import com.example.carrot.R
 
 class LogInActivity : AppCompatActivity() {
     val btnJoin: Button by lazy {
