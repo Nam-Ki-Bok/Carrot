@@ -10,4 +10,5 @@
     <color name="carrot">#FF8B49</color>
     <color name="transparent">#00FF0000</color>
     <color name="gray">#808080</color>
+    <color name="divider_gray">#CFD5DB</color>
 </resources>

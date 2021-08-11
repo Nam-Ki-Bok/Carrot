@@ -13,66 +13,88 @@
         android:layout_height="?attr/actionBarSize"
         android:background="@color/white"
         android:elevation="1dp"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:menu="@menu/menu_additemtoolbar"
+        app:popupTheme="@style/toolbarMenuTextStyle"
         app:title="중고거래 글쓰기"
         app:titleTextAppearance="@style/toolbarTitleStyle"
-        app:menu="@menu/"
-        >
-
-    </androidx.appcompat.widget.Toolbar>
+        tools:ignore="MissingConstraints" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginStart="10dp"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="20dp"
+        android:paddingEnd="20dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/addItemToolbar">
 
-
         <LinearLayout
             android:id="@+id/layoutImageAdd"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            app:layout_constraintDimensionRatio="w, 1:4"
+            android:layout_width="match_parent"
+            android:layout_height="90dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/btnAddImage"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:background="@drawable/ic_baseline_image_search_24" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/addImageLayout"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:layout_gravity="center_vertical"
+                android:background="@drawable/bg_addphoto">
 
-            <ImageView
-                android:id="@+id/img1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop" />
+                <ImageView
+                    android:id="@+id/imgPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_camera"
+                    app:layout_constraintBottom_toTopOf="@id/guideLine"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
 
-            <ImageView
-                android:id="@+id/img2"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop" />
+                <androidx.constraintlayout.widget.Guideline
+                    android:id="@+id/guideLine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    app:layout_constraintGuide_percent="0.55" />
 
-            <ImageView
-                android:id="@+id/img3"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_margin="10dp"
-                android:layout_weight="1"
-                android:scaleType="centerCrop" />
+                <TextView
+                    android:id="@+id/tvPhotoCount"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="0"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toStartOf="@id/tvMaxPhoto"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/guideLine"
+                    app:layout_constraintHorizontal_chainStyle="packed"/>
 
+                <TextView
+                    android:id="@+id/tvMaxPhoto"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="/10"
+                    android:textSize="14sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_chainStyle="packed"
+                    app:layout_constraintStart_toEndOf="@id/tvPhotoCount"
+                    app:layout_constraintTop_toBottomOf="@id/guideLine" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_marginLeft="10dp"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/recyclerview_addphotoitem" />
         </LinearLayout>
 
         <EditText

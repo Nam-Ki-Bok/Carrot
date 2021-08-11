@@ -88,7 +88,7 @@ class AddItemActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_addtoolbar, menu)
+        menuInflater.inflate(R.menu.menu_additemtoolbar, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -99,7 +99,7 @@ class AddItemActivity : AppCompatActivity() {
                 finish()
                 return true
             }
-            R.id.itemCompletion -> {
+            R.id.addItemToolbarFinish -> {
                 //TODO 완료버튼 눌렀을 때 이벤트 처리
                 setDataAtFragment()
                 finish()
