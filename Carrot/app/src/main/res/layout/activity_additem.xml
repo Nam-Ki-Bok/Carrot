@@ -11,16 +11,15 @@
         android:id="@+id/addItemToolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="@color/white"
         android:elevation="1dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/menu_additemtoolbar"
+        app:navigationIcon="?homeAsUpIndicator"
         app:popupTheme="@style/toolbarMenuTextStyle"
         app:title="중고거래 글쓰기"
-        app:titleTextAppearance="@style/toolbarTitleStyle"
-        tools:ignore="MissingConstraints" />
+        app:titleTextAppearance="@style/toolbarTitleStyle" />
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -32,22 +31,24 @@
         app:layout_constraintTop_toBottomOf="@id/addItemToolbar">
 
         <LinearLayout
-            android:id="@+id/layoutImageAdd"
+            android:id="@+id/layoutPhotoAdd"
             android:layout_width="match_parent"
             android:layout_height="90dp"
+            android:layout_marginTop="10dp"
+            android:orientation="horizontal"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
             <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/addImageLayout"
+                android:id="@+id/addPhotoLayout"
                 android:layout_width="70dp"
                 android:layout_height="70dp"
                 android:layout_gravity="center_vertical"
                 android:background="@drawable/bg_addphoto">
 
                 <ImageView
-                    android:id="@+id/imgPhoto"
+                    android:id="@+id/ivPhoto"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:src="@drawable/ic_camera"
@@ -69,9 +70,9 @@
                     android:text="0"
                     android:textSize="14sp"
                     app:layout_constraintEnd_toStartOf="@id/tvMaxPhoto"
+                    app:layout_constraintHorizontal_chainStyle="packed"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/guideLine"
-                    app:layout_constraintHorizontal_chainStyle="packed"/>
+                    app:layout_constraintTop_toBottomOf="@id/guideLine" />
 
                 <TextView
                     android:id="@+id/tvMaxPhoto"
@@ -95,111 +96,120 @@
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 tools:listitem="@layout/recyclerview_addphotoitem" />
+
         </LinearLayout>
+
+        <View
+            android:id="@+id/divider1"
+            style="@style/Divider.Horizontal"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@id/etTitle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/layoutPhotoAdd" />
 
         <EditText
             android:id="@+id/etTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
+            android:Lines="1"
             android:background="@null"
             android:hint="글 제목"
-            android:imeOptions="actionDone"
-            android:inputType="text"
-            android:maxLength="20"
-            android:maxLines="1"
-            android:textColor="@color/black"
+            android:textColorHint="@color/divider_gray"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/divider2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutImageAdd" />
+            app:layout_constraintTop_toBottomOf="@id/divider1" />
 
         <View
-            android:id="@+id/line2"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/gray"
+            android:id="@+id/divider2"
+            style="@style/Divider.Horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@id/etPrice"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etTitle" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/layoutPrice"
-            android:layout_width="match_parent"
+        <TextView
+            android:id="@+id/tvWon"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:orientation="horizontal"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center_vertical"
+            android:text="₩"
+            android:textColor="@color/divider_gray"
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@id/divider3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/line2">
+            app:layout_constraintTop_toBottomOf="@id/divider2" />
 
-            <EditText
-                android:id="@+id/etPrice"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:background="@null"
-                android:hint="₩ 가격 (선택사항)"
-                android:imeOptions="actionDone"
-                android:inputType="number"
-                android:maxLength="10"
-                android:maxLines="1"
-                android:textColor="@color/black"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/linearLayout"
-                app:layout_constraintHorizontal_bias="0"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+        <EditText
+            android:id="@+id/etPrice"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:background="@null"
+            android:hint="가격 (선택사항)"
+            android:inputType="numberDecimal"
+            android:textColorHint="@color/divider_gray"
+            android:textSize="16sp"
+            app:layout_constraintBottom_toTopOf="@id/divider3"
+            app:layout_constraintStart_toEndOf="@id/tvWon"
+            app:layout_constraintTop_toBottomOf="@id/divider2" />
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
+        <LinearLayout
+            android:id="@+id/layoutProposal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@id/divider3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/divider2">
+
+            <ImageView
+                android:id="@+id/ivProposal"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                android:layout_gravity="center_vertical"
+                android:src="@drawable/ic_check" />
 
-                <CheckBox
-                    android:id="@+id/cbPrice"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="가격제안 받기" />
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
+            <TextView
+                android:id="@+id/tvProposal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="5dp"
+                android:text="가격제안 받기"
+                android:textColor="@color/divider_gray"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+        </LinearLayout>
 
         <View
-            android:id="@+id/line3"
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginTop="10dp"
-            android:background="@color/gray"
+            android:id="@+id/divider3"
+            style="@style/Divider.Horizontal"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            app:layout_constraintBottom_toTopOf="@id/etMainText"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/layoutPrice" />
-
+            app:layout_constraintTop_toBottomOf="@id/etPrice" />
 
         <EditText
             android:id="@+id/etMainText"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:layout_marginTop="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:background="@null"
-            android:gravity="top"
+            android:gravity="top|left"
             android:hint="올릴 게시글 내용을 작성해주세요.(가품 및 판매금지품목은 게시가 제한될 수 있어요.)"
             android:imeOptions="actionDone"
-            android:inputType="text"
-            android:textColor="@color/black"
-            app:layout_constraintBottom_toBottomOf="parent"
+            android:textColorHint="@color/divider_gray"
+            android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="@id/line3" />
+            app:layout_constraintTop_toTopOf="@id/divider3" />
     </androidx.constraintlayout.widget.ConstraintLayout>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>
