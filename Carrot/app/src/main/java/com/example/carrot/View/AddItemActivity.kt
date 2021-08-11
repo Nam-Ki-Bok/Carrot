@@ -3,8 +3,6 @@ package com.example.carrot.View
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.BitmapFactory
 import android.net.Uri
 import android.os.Bundle
 import android.view.Menu
@@ -16,8 +14,6 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.core.view.drawToBitmap
-import androidx.fragment.app.Fragment
 import com.example.carrot.Fragment.HomeFragment
 import com.example.carrot.R
 import kotlinx.android.synthetic.main.activity_additem.*
@@ -88,7 +84,7 @@ class AddItemActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_additemtoolbar, menu)
+        menuInflater.inflate(R.menu.menu_additem_toolbar, menu)
         return super.onCreateOptionsMenu(menu)
     }
 

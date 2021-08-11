@@ -15,7 +15,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:menu="@menu/menu_additemtoolbar"
+        app:menu="@menu/menu_additem_toolbar"
         app:navigationIcon="?homeAsUpIndicator"
         app:popupTheme="@style/toolbarMenuTextStyle"
         app:title="중고거래 글쓰기"

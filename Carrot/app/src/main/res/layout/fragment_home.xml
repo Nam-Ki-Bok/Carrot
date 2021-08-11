@@ -6,6 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".Fragment.HomeFragment">
 
+    <androidx.appcompat.widget.Toolbar
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/white"
+        android:elevation="1dp"
+        app:contentInsetStart="5dp"
+        app:menu="@menu/"
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
         android:id="@+id/pullToRefresh"
         android:layout_width="match_parent"
