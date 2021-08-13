@@ -22,7 +22,7 @@
         </activity>
 
         <activity android:name=".View.MainActivity" />
-        <activity android:name=".AddItemActivity" />
+        <activity android:name=".View.AddItemActivity" />
         <activity android:name=".View.ItemSelectedActivity" />
     </application>
 </manifest>
