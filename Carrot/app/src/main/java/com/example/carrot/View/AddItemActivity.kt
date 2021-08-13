@@ -1,25 +1,75 @@
 package com.example.carrot.View
 
-import android.app.Activity
-import android.content.Intent
-import android.content.pm.PackageManager
-import android.net.Uri
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuItem
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.Toast
-import androidx.appcompat.app.AlertDialog
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
+import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import com.example.carrot.Fragment.HomeFragment
 import com.example.carrot.R
 import kotlinx.android.synthetic.main.activity_additem.*
-import kotlinx.android.synthetic.main.activity_main.*
 
 class AddItemActivity : AppCompatActivity() {
 
-    
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_additem)
+        init()
+    }
+
+    private fun init() {
+        initToolbar()
+        initPrice()
+        //initProposal()
+        //initMainText()
+        //initAddImage()
+    }
+
+    private fun initToolbar() {
+        addItemToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.addItemToolbarFinish -> {
+                    //TODO 완료버튼을 눌렀을 때 게시물 업로드
+                    Log.d("btnFinish", "완료버튼을 눌렀습니다.")
+                    //postContent()
+                    true
+                }
+                else -> {
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
+        addItemToolbar.setNavigationOnClickListener {
+            finish()
+        }
+    }
+
+    private fun initPrice() {
+        etPrice.addTextChangedListener(object : TextWatcher {
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+            override fun afterTextChanged(s: Editable?) {
+                if (s.toString().isEmpty()) {
+                    tvWon.setTextColor(getColor(R.color.divider_gray))
+                } else {
+                    tvWon.setTextColor(getColor(R.color.black))
+                }
+            }
+        })
+
+        etPrice.setOnFocusChangeListener { v, hasFocus ->
+            if (hasFocus) {
+                val commaPrice = etPrice.text.toString().replace(",", "")
+                etPrice.text = commaPrice.toEditable()
+            }
+        }
+    }
 }
+
+private fun String.toEditable(): Editable = Editable.Factory.getInstance().newEditable(this)
