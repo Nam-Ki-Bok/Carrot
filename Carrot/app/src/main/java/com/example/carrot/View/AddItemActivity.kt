@@ -6,10 +6,15 @@ import android.text.TextWatcher
 import android.util.Log
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
+import com.esafirm.imagepicker.features.ImagePicker
 import com.example.carrot.R
 import kotlinx.android.synthetic.main.activity_additem.*
+import java.text.NumberFormat
+import java.util.*
 
 class AddItemActivity : AppCompatActivity() {
+
+    private var isProposal : Boolean = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,9 +25,9 @@ class AddItemActivity : AppCompatActivity() {
     private fun init() {
         initToolbar()
         initPrice()
-        //initProposal()
-        //initMainText()
-        //initAddImage()
+        initProposal()
+        initMainText()
+        initAddImage()
     }
 
     private fun initToolbar() {
@@ -67,8 +72,46 @@ class AddItemActivity : AppCompatActivity() {
             if (hasFocus) {
                 val commaPrice = etPrice.text.toString().replace(",", "")
                 etPrice.text = commaPrice.toEditable()
+            } else {
+                if(etPrice.text.toString().isNotEmpty()) {
+                    val intPrice = etPrice.text.toString().toInt()
+                    etPrice.text = NumberFormat.getNumberInstance(Locale.KOREA).format(intPrice).toEditable()
+                }
             }
         }
+    }
+
+    private fun initProposal() {
+        layoutProposal.setOnClickListener {
+            isProposal = !isProposal
+            setProposal(isProposal)
+        }
+    }
+
+    private fun setProposal(state: Boolean) {
+        if(state) {
+            //TODO 가격제안을 받을 경우
+            ivProposal.isSelected = true
+            tvProposal.setTextColor(getColor(R.color.black))
+        } else {
+            //TODO 가격제안을 받지 않을 경우
+            ivProposal.isSelected = false
+            tvProposal.setTextColor(getColor(R.color.divider_gray))
+        }
+    }
+
+    private fun initMainText() {
+        etMainText.hint = "올릴 게시글 내용을 작성해주세요.(가품 및 판매금지품목은 게시가 제한될 수 있어요.)"
+    }
+
+    private fun initAddImage() {
+        addPhotoLayout.setOnClickListener {
+            addPhoto()
+        }
+    }
+
+    private fun addPhoto() {
+        ImagePicker.create(this).start()
     }
 }
 
