@@ -1,5 +1,6 @@
 package com.example.carrot.View
 
+import android.content.Intent
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -7,14 +8,17 @@ import android.util.Log
 import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.esafirm.imagepicker.features.ImagePicker
+import com.esafirm.imagepicker.model.Image
 import com.example.carrot.R
 import kotlinx.android.synthetic.main.activity_additem.*
+import retrofit2.Retrofit
 import java.text.NumberFormat
 import java.util.*
 
 class AddItemActivity : AppCompatActivity() {
-
+    private lateinit var retrofit: Retrofit
     private var isProposal : Boolean = false
+    private var pickerImages = mutableListOf<Image>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +26,15 @@ class AddItemActivity : AppCompatActivity() {
         init()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        if(ImagePicker.shouldHandle(requestCode, resultCode, data)) {
+            pickerImages = ImagePicker.getImages(data)
+            addImageThumbnail()
+        }
+        super.onActivityResult(requestCode, resultCode, data)
+    }
     private fun init() {
+        initRetrofit()
         initToolbar()
         initPrice()
         initProposal()
@@ -30,6 +42,10 @@ class AddItemActivity : AppCompatActivity() {
         initAddImage()
     }
 
+    private fun initRetrofit() {
+        retrofit = RetrofitClient.getInstance()
+
+    }
     private fun initToolbar() {
         addItemToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -101,7 +117,7 @@ class AddItemActivity : AppCompatActivity() {
     }
 
     private fun initMainText() {
-        etMainText.hint = "올릴 게시글 내용을 작성해주세요.(가품 및 판매금지품목은 게시가 제한될 수 있어요.)"
+        etContent.hint = "올릴 게시글 내용을 작성해주세요.(가품 및 판매금지품목은 게시가 제한될 수 있어요.)"
     }
 
     private fun initAddImage() {
@@ -112,6 +128,13 @@ class AddItemActivity : AppCompatActivity() {
 
     private fun addPhoto() {
         ImagePicker.create(this).start()
+    }
+
+    //추가된 사진 thumbnail 추가
+    private fun addImageThumbnail() {
+        for(i in pickerImages.indices) {
+            imageAdapter.addItem(pickerImages[i])
+        }
     }
 }
 

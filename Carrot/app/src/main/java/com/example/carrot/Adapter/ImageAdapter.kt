@@ -21,6 +21,6 @@ class ImageAdapter(
     override fun bindView(convertView: View, listPosition: Int, viewType: Int) {
         val image = convertView.findViewById<ImageView>(R.id.ivImage)
 
-        
+
     }
 }

@@ -192,13 +192,13 @@
             style="@style/Divider.Horizontal"
             android:layout_marginTop="20dp"
             android:layout_marginBottom="20dp"
-            app:layout_constraintBottom_toTopOf="@id/etMainText"
+            app:layout_constraintBottom_toTopOf="@id/etContent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/etPrice" />
 
         <EditText
-            android:id="@+id/etMainText"
+            android:id="@+id/etContent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
