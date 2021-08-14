@@ -9,7 +9,9 @@ import android.widget.Toolbar
 import androidx.appcompat.app.AppCompatActivity
 import com.esafirm.imagepicker.features.ImagePicker
 import com.esafirm.imagepicker.model.Image
+import com.example.carrot.Network.RetrofitClient
 import com.example.carrot.R
+import com.example.carrot.Service.SaleService
 import kotlinx.android.synthetic.main.activity_additem.*
 import retrofit2.Retrofit
 import java.text.NumberFormat
@@ -17,6 +19,7 @@ import java.util.*
 
 class AddItemActivity : AppCompatActivity() {
     private lateinit var retrofit: Retrofit
+    private lateinit var saleService: SaleService
     private var isProposal : Boolean = false
     private var pickerImages = mutableListOf<Image>()
 
@@ -44,6 +47,7 @@ class AddItemActivity : AppCompatActivity() {
 
     private fun initRetrofit() {
         retrofit = RetrofitClient.getInstance()
+        saleService = retrofit.create(SaleService::class.java)
 
     }
     private fun initToolbar() {
