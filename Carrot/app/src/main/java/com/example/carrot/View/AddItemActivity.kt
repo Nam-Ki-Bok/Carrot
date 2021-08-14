@@ -13,6 +13,7 @@ import com.example.carrot.Network.RetrofitClient
 import com.example.carrot.R
 import com.example.carrot.Service.SaleService
 import kotlinx.android.synthetic.main.activity_additem.*
+import okhttp3.internal.Util
 import retrofit2.Retrofit
 import java.text.NumberFormat
 import java.util.*
@@ -20,6 +21,8 @@ import java.util.*
 class AddItemActivity : AppCompatActivity() {
     private lateinit var retrofit: Retrofit
     private lateinit var saleService: SaleService
+    private lateinit var token: String
+
     private var isProposal : Boolean = false
     private var pickerImages = mutableListOf<Image>()
 
@@ -37,6 +40,7 @@ class AddItemActivity : AppCompatActivity() {
         super.onActivityResult(requestCode, resultCode, data)
     }
     private fun init() {
+        token = Util.readToken(this)
         initRetrofit()
         initToolbar()
         initPrice()
