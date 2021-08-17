@@ -54,24 +54,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
-            android:text="ID"
-            android:textColor="@color/carrot"
-            android:textSize="20sp" />
-
-        <EditText
-            android:id="@+id/etID"
-            android:layout_width="match_parent"
-            android:layout_height="50dp"
-            android:background="@drawable/et_background"
-            android:maxLength="15"
-            android:maxLines="1"
-            android:padding="5dp"
-            android:textColor="@color/carrot" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="5dp"
             android:text="Password"
             android:textColor="@color/carrot"
             android:textSize="20sp" />
