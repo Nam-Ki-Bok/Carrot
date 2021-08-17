@@ -9,8 +9,7 @@ import android.widget.ImageView
 import com.asksira.loopingviewpager.LoopingPagerAdapter
 import com.example.carrot.R
 
-class ImageAdapter(
-    context: Context,
+class ImageAdapter(context: Context,
     itemList: ArrayList<Image>,
     isInfinite: Boolean
 ): LoopingPagerAdapter<Image>(context, itemList, isInfinite) {

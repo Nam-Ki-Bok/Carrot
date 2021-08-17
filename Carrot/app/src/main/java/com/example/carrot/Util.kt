@@ -9,5 +9,10 @@ class Util {
             val sharedPref = activity.getSharedPreferences(activity.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
             return sharedPref.getString("token", "")!!
         }
+
+        fun readToken(context: Context) : String {
+            val sharedPref = context.getSharedPreferences(context.getString(R.string.preference_file_key), Context.MODE_PRIVATE)
+            return sharedPref.getString("token", "")!!
+        }
     }
 }
