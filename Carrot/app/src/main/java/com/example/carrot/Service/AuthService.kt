@@ -7,21 +7,21 @@ import retrofit2.http.*
 interface AuthService {
     @GET("auth/is-sigh-up")
     fun isSighUp (
-        @Query("email") email: String
+        @Query("phone") phone: String
     ) : Call<Void>
 
     @FormUrlEncoded
     @POST("auth/sign-up")
     fun signUp(
-        @Field("email") email: String,
         @Field("name") name: String,
+        @Field("phone") phone: String,
         @Field("password") password: String
     ) : Call<UserResponse>
 
     @FormUrlEncoded
     @POST("auth/login")
     fun login(
-        @Field("email") email: String,
+        @Field("phone") phone: String,
         @Field("password") password: String
     ) : Call<UserResponse>
 }

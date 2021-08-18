@@ -8,7 +8,7 @@ object RetrofitClient {
     private var instance: Retrofit? = null
     private val gson = GsonBuilder().setLenient().create()
 
-    private const val BASE_URL = ""
+    private const val BASE_URL = "/api/user/join"
 
     fun getInstance(): Retrofit {
         if(instance == null) {
