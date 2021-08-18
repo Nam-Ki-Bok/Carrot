@@ -5,13 +5,13 @@ import retrofit2.Call
 import retrofit2.http.*
 
 interface AuthService {
-    @GET("auth/is-sigh-up")
+    @GET("api/user/join")
     fun isSighUp (
         @Query("phone") phone: String
     ) : Call<Void>
 
     @FormUrlEncoded
-    @POST("auth/sign-up")
+    @POST("api/user/join")
     fun signUp(
         @Field("name") name: String,
         @Field("phone") phone: String,
@@ -19,7 +19,7 @@ interface AuthService {
     ) : Call<UserResponse>
 
     @FormUrlEncoded
-    @POST("auth/login")
+    @POST("api/user/login")
     fun login(
         @Field("phone") phone: String,
         @Field("password") password: String
