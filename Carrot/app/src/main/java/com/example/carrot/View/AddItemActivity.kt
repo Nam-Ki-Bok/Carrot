@@ -52,7 +52,7 @@ class AddItemActivity : AppCompatActivity() {
 
     private fun init() {
         token = Util.readToken(this)
-        //initRetrofit()
+        initRetrofit()
         initToolbar()
         initPrice()
         initProposal()

@@ -47,7 +47,6 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
         joinToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
                 R.id.joinToolbarFinish -> {
-                    Log.d("btnFinish", "완료버튼을 눌렀습니다.")
                     checkUser()
                     activity?.finish()
                     true
@@ -58,7 +57,7 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
             }
         }
         joinToolbar.setNavigationOnClickListener {
-            finish()
+            activity?.finish()
         }
     }
 
@@ -160,14 +159,12 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
 
     private fun moveNext(name: String, phoneNum: String, password: String) {
         if (!name.isNullOrEmpty() && !phoneNum.isNullOrEmpty() && !password.isNullOrEmpty()) {
-            Log.d("JoinFragment", "이제 API찌르러 가는거야!!")
-
             val callSignUp = joinService.signUp(name, phoneNum, password, "ROLE_ADMIN,ROLE_USER")
 
             callSignUp.enqueue(object : Callback<Void> {
                 override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful && response.code() == ResponseCode.SUCCESS_POST) {
-                        Log.d("JoinFragment: onResponse: Success:: ","데이터 전송 완료!!")
+                        Log.d("JoinFragment: onResponse: Success:: ", "데이터 전송 완료!!")
                         finish()
                     }
                 }
