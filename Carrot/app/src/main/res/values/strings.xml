@@ -4,4 +4,5 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="preference_file_key">CarrotMarket</string>
     <string name="join">계정이 없으신가요? <b><u>가입하기</u></b></string>
+    <string name="BASE_URL">http://ec2-3-34-172-246.ap-northeast-2.compute.amazonaws.com:8080/</string>
 </resources>

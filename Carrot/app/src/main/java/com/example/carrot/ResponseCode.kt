@@ -2,8 +2,8 @@ package com.example.carrot
 
 class ResponseCode {
     companion object {
-        const val SUCCESS_GET = 200
-        const val SUCCESS_POST = 201
+        const val SUCCESS_GET = 201
+        const val SUCCESS_POST = 200
         const val SUCCESS_DELETE = 204
 
         const val BAD_REQUEST = 400

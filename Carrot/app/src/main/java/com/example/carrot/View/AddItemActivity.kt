@@ -33,7 +33,7 @@ class AddItemActivity : AppCompatActivity() {
     private lateinit var token: String
     private lateinit var imageAdapter: ImageAdapter
 
-    private var isProposal : Boolean = false
+    private var isProposal: Boolean = false
     private var pickerImages = mutableListOf<Image>()
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,12 +43,13 @@ class AddItemActivity : AppCompatActivity() {
     }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        if(ImagePicker.shouldHandle(requestCode, resultCode, data)) {
+        if (ImagePicker.shouldHandle(requestCode, resultCode, data)) {
             pickerImages = ImagePicker.getImages(data)
             addImageThumbnail()
         }
         super.onActivityResult(requestCode, resultCode, data)
     }
+
     private fun init() {
         token = Util.readToken(this)
         //initRetrofit()
@@ -64,6 +65,7 @@ class AddItemActivity : AppCompatActivity() {
         saleService = retrofit.create(SaleService::class.java)
 
     }
+
     private fun initToolbar() {
         addItemToolbar.setOnMenuItemClickListener {
             when (it.itemId) {
@@ -107,9 +109,10 @@ class AddItemActivity : AppCompatActivity() {
                 val commaPrice = etPrice.text.toString().replace(",", "")
                 etPrice.text = commaPrice.toEditable()
             } else {
-                if(etPrice.text.toString().isNotEmpty()) {
+                if (etPrice.text.toString().isNotEmpty()) {
                     val intPrice = etPrice.text.toString().toInt()
-                    etPrice.text = NumberFormat.getNumberInstance(Locale.KOREA).format(intPrice).toEditable()
+                    etPrice.text =
+                        NumberFormat.getNumberInstance(Locale.KOREA).format(intPrice).toEditable()
                 }
             }
         }
@@ -123,7 +126,7 @@ class AddItemActivity : AppCompatActivity() {
     }
 
     private fun setProposal(state: Boolean) {
-        if(state) {
+        if (state) {
             //TODO 가격제안을 받을 경우
             ivProposal.isSelected = true
             tvProposal.setTextColor(getColor(R.color.black))
@@ -150,21 +153,23 @@ class AddItemActivity : AppCompatActivity() {
 
     //추가된 사진 thumbnail 추가
     private fun addImageThumbnail() {
-        for(i in pickerImages.indices) {
+        for (i in pickerImages.indices) {
             imageAdapter.addItem(pickerImages[i])
         }
     }
 
-    class ImageAdapter(private val context: Context, private val dataSet: ArrayList<Image>) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
+    class ImageAdapter(private val context: Context, private val dataSet: ArrayList<Image>) :
+        RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
         private lateinit var retrofit: Retrofit
         private lateinit var deleteService: AuthService
 
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.recyclerview_addphotoitem, parent, false)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.recyclerview_addphotoitem, parent, false)
             retrofit = RetrofitClient.getInstance()
             deleteService = retrofit.create(AuthService::class.java)
 
-            return ViewHolder(view).listen {position, _ ->
+            return ViewHolder(view).listen { position, _ ->
                 removeImage(position)
             }
         }
@@ -187,7 +192,7 @@ class AddItemActivity : AppCompatActivity() {
             val image: ImageView = view.findViewById(R.id.ivImage)
         }
 
-        private fun <T: RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
+        private fun <T : RecyclerView.ViewHolder> T.listen(event: (position: Int, type: Int) -> Unit): T {
             itemView.setOnClickListener {
                 event.invoke(adapterPosition, itemViewType)
             }
@@ -198,7 +203,7 @@ class AddItemActivity : AppCompatActivity() {
         private fun removeImage(position: Int) {
             dataSet.removeAt(position)
 
-            if(dataSet.size > 0) {
+            if (dataSet.size > 0) {
                 (context as AddItemActivity).tvPhotoCount.text = dataSet.size.toString()
                 context.tvPhotoCount.setTextColor(context.getColor(R.color.carrot))
             } else {
@@ -217,9 +222,9 @@ class AddItemActivity : AppCompatActivity() {
             notifyDataSetChanged()
         }
 
-        fun getNewPriority() : Int {
-            for(index in dataSet.indices) {
-                if(dataSet[index].id != -1L) {
+        fun getNewPriority(): Int {
+            for (index in dataSet.indices) {
+                if (dataSet[index].id != -1L) {
                     return index
                 }
             }

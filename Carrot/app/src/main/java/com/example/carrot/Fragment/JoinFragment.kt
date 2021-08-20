@@ -12,12 +12,14 @@ import com.example.carrot.R
 import com.example.carrot.Response.UserResponse
 import com.example.carrot.ResponseCode
 import com.example.carrot.Service.AuthService
+import kotlinx.android.synthetic.main.activity_additem.*
 import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.fragment_join.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import retrofit2.Retrofit
+
 class JoinFragment : Fragment(R.layout.fragment_join) {
     private lateinit var retrofit: Retrofit
     private lateinit var joinService: AuthService
@@ -29,14 +31,35 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
 
     private fun init() {
         initView()
-        //initRetrofit()
+        initRetrofit()
     }
 
     private fun initView() {
+        Log.d("JoinFragment", "view 초기화")
+        initToolbar()
         initName()
         initPhoneNum()
         initPassword()
         initNext()
+    }
+
+    private fun initToolbar() {
+        joinToolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.joinToolbarFinish -> {
+                    Log.d("btnFinish", "완료버튼을 눌렀습니다.")
+                    checkUser()
+                    activity?.finish()
+                    true
+                }
+                else -> {
+                    super.onOptionsItemSelected(it)
+                }
+            }
+        }
+        joinToolbar.setNavigationOnClickListener {
+            finish()
+        }
     }
 
     private fun initRetrofit() {
@@ -52,7 +75,6 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
                 } else {
                     tilName.error = null
                 }
-
             }
         }
     }
@@ -67,10 +89,12 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
 
     private fun initPassword() {
         etPassword.setOnFocusChangeListener { v, hasFocus ->
-            if (etPassword.text.isNullOrEmpty()) {
-                tilPassword.error = "비밀번호를 입력해주세요."
-            } else {
-                tilPassword.error = null
+            if (!hasFocus) {
+                if (etPassword.text.isNullOrEmpty()) {
+                    tilPassword.error = "비밀번호를 입력해주세요."
+                } else {
+                    tilPassword.error = null
+                }
             }
         }
     }
@@ -108,9 +132,10 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
         val name = etName.text.toString()
         val phoneNum = etPhoneNum.text.toString()
         val password = etPassword.text.toString()
+        //val callUser = joinService.isSighUp(phoneNum)
 
-        val callUser = joinService.isSighUp(phoneNum)
-        callUser.enqueue(object : Callback<Void> {
+        moveNext(name, phoneNum, password)
+        /*callUser.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
                 if (response.isSuccessful) {
                     when (response.code()) {
@@ -130,21 +155,25 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
             override fun onFailure(call: Call<Void>, t: Throwable) {
                 Log.e("Join", "실패 : $t")
             }
-        })
+        })*/
     }
 
     private fun moveNext(name: String, phoneNum: String, password: String) {
         if (!name.isNullOrEmpty() && !phoneNum.isNullOrEmpty() && !password.isNullOrEmpty()) {
-            val callSignUp = joinService.signUp(name, phoneNum, password)
-            callSignUp.enqueue(object: Callback<UserResponse> {
-                override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+            Log.d("JoinFragment", "이제 API찌르러 가는거야!!")
+
+            val callSignUp = joinService.signUp(name, phoneNum, password, "ROLE_ADMIN,ROLE_USER")
+
+            callSignUp.enqueue(object : Callback<Void> {
+                override fun onResponse(call: Call<Void>, response: Response<Void>) {
                     if (response.isSuccessful && response.code() == ResponseCode.SUCCESS_POST) {
+                        Log.d("JoinFragment: onResponse: Success:: ","데이터 전송 완료!!")
                         finish()
                     }
                 }
 
-                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    Log.e("Join", "실패 : $t")
+                override fun onFailure(call: Call<Void>, t: Throwable) {
+                    Log.e("JoinFragment: onResponse: Failure:: ", "실패 : $t")
                 }
             })
         }
@@ -156,6 +185,7 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
             ?.remove(this)
             ?.commit()
 
+        Log.d("JoinFragment: finish: Success:: ", "회원가입 완료")
         Toast.makeText(context, "회원가입 완료", Toast.LENGTH_SHORT).show()
         activity?.finish()
     }
