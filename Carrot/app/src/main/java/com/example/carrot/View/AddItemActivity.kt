@@ -145,6 +145,10 @@ class AddItemActivity : AppCompatActivity() {
         addPhotoLayout.setOnClickListener {
             addImage()
         }
+
+        imageAdapter = ImageAdapter(this, arrayListOf())
+        rvImage.adapter = imageAdapter
+
     }
 
     private fun addImage() {
@@ -158,8 +162,7 @@ class AddItemActivity : AppCompatActivity() {
         }
     }
 
-    class ImageAdapter(private val context: Context, private val dataSet: ArrayList<Image>) :
-        RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
+    class ImageAdapter(private val context: Context, private val dataSet: ArrayList<Image>) : RecyclerView.Adapter<ImageAdapter.ViewHolder>() {
         private lateinit var retrofit: Retrofit
         private lateinit var deleteService: AuthService
 
