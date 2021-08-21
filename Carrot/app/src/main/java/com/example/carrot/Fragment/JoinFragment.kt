@@ -15,6 +15,7 @@ import com.example.carrot.Service.AuthService
 import kotlinx.android.synthetic.main.activity_additem.*
 import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.fragment_join.*
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

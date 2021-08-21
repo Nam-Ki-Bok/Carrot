@@ -15,6 +15,10 @@ data class UserResponse(
 
 @Parcelize
 data class User(
+    @SerializedName("id")
+    @Expose
+    var id: Int = 0,
+
     @SerializedName("name")
     @Expose
     var name: String = "",

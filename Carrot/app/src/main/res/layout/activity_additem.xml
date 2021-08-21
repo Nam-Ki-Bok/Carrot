@@ -95,7 +95,7 @@
                 android:layout_marginLeft="10dp"
                 android:orientation="horizontal"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                tools:listitem="@layout/recyclerview_addphotoitem" />
+                tools:listitem="@layout/recyclerview_addimageitem" />
 
         </LinearLayout>
 
