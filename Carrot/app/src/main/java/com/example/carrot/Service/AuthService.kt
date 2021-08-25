@@ -23,12 +23,10 @@ interface AuthService {
         @Field("auth") auth: String
     ): Call<Void>
 
-    /*
     @FormUrlEncoded
     @POST("api/user/login")
     fun login(
         @Field("phone") phone: String,
         @Field("password") password: String
-    ): Call<UserResponse>
-    */
+    ): Call<Void>
 }
