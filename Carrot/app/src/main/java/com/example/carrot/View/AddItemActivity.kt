@@ -14,6 +14,7 @@ import android.widget.ImageView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.esafirm.imagepicker.features.ImagePicker
 import com.esafirm.imagepicker.model.Image
 import com.example.carrot.Network.RetrofitClient
@@ -309,7 +310,7 @@ class AddItemActivity : AppCompatActivity() {
         }
 
         override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-            /*if (dataSet[position].id == -1L) {
+            if (dataSet[position].id == -1L) {
                 Glide.with(context)
                     .load("" + dataSet[position].path)
                     .into(holder.image)
@@ -317,7 +318,7 @@ class AddItemActivity : AppCompatActivity() {
                 Glide.with(context)
                     .load(dataSet[position].uri)
                     .into(holder.image)
-            }*/
+            }
         }
 
         override fun getItemCount(): Int = dataSet.size
@@ -356,15 +357,7 @@ class AddItemActivity : AppCompatActivity() {
             notifyDataSetChanged()
         }
 
-        fun getNewPriority(): Int {
-            for (index in dataSet.indices) {
-                if (dataSet[index].id != -1L) {
-                    return index
-                }
-            }
 
-            return -1
-        }
 
     }
 
