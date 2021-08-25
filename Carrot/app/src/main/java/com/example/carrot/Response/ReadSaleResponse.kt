@@ -38,9 +38,6 @@ data class Sale(
     @SerializedName("createdAt")
     var createdAt: String = "",
 
-    @SerializedName("User")
-    var user: User,
-
     @SerializedName("Images")
     var images: ArrayList<Image> = arrayListOf()
 ) : Parcelable
