@@ -1,5 +1,6 @@
 package com.example.carrot.Service
 
+import com.example.carrot.Response.TestResponse
 import com.example.carrot.Response.UserResponse
 import okhttp3.ResponseBody
 import retrofit2.Call
@@ -28,5 +29,5 @@ interface AuthService {
     fun login(
         @Field("phone") phone: String,
         @Field("password") password: String
-    ): Call<Void>
+    ): Call<TestResponse>
 }

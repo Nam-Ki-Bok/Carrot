@@ -20,12 +20,29 @@
         android:layout_width="match_parent"
         android:layout_height="150dp"
         android:layout_margin="15dp"
+        android:background="@drawable/bg_login"
         android:layout_weight="1" />
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        android:textColor="@color/gray"
+        android:textSize="15sp"
+        tools:text="User"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <androidx.appcompat.widget.AppCompatButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
     </LinearLayout>
 
 </LinearLayout>
