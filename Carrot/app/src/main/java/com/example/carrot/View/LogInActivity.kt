@@ -69,6 +69,5 @@ class LogInActivity : AppCompatActivity() {
     private fun join() {
         val intent = Intent(this, JoinActivity::class.java)
         startActivity(intent)
-        finish()
     }
 }

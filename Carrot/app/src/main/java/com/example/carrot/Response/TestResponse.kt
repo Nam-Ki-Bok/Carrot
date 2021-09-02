@@ -4,5 +4,10 @@ import com.google.gson.annotations.SerializedName
 
 data class TestResponse(
     @SerializedName("test")
-    var test: String
+    val result: List<ResultResponse>
+)
+
+data class ResultResponse(
+    @SerializedName("result")
+    val test: String
 )
