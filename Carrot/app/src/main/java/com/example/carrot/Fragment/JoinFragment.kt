@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.carrot.Network.RetrofitClient
 import com.example.carrot.R
+import com.example.carrot.Response.User
 import com.example.carrot.Response.UserResponse
 import com.example.carrot.ResponseCode
 import com.example.carrot.Service.AuthService
@@ -36,7 +37,6 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
     }
 
     private fun initView() {
-        Log.d("JoinFragment", "view 초기화")
         initToolbar()
         initName()
         initPhoneNum()
@@ -134,6 +134,7 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
         val password = etPassword.text.toString()
         //val callUser = joinService.isSighUp(phoneNum)
 
+        Log.d("test","Next Button Clicked")
         moveNext(name, phoneNum, password)
         /*callUser.enqueue(object : Callback<Void> {
             override fun onResponse(call: Call<Void>, response: Response<Void>) {
@@ -162,15 +163,15 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
         if (!name.isNullOrEmpty() && !phoneNum.isNullOrEmpty() && !password.isNullOrEmpty()) {
             val callSignUp = joinService.signUp(name, phoneNum, password, "ROLE_ADMIN,ROLE_USER")
 
-            callSignUp.enqueue(object : Callback<Void> {
-                override fun onResponse(call: Call<Void>, response: Response<Void>) {
+            callSignUp.enqueue(object : Callback<UserResponse> {
+                override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                     if (response.isSuccessful && response.code() == ResponseCode.SUCCESS_POST) {
-                        Log.d("JoinFragment: onResponse: Success:: ", "데이터 전송 완료!!")
+                        Log.d("JoinFragment: onResponse: Success:: ", "${response.body().toString()}")
                         finish()
                     }
                 }
 
-                override fun onFailure(call: Call<Void>, t: Throwable) {
+                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                     Log.e("JoinFragment: onResponse: Failure:: ", "실패 : $t")
                 }
             })

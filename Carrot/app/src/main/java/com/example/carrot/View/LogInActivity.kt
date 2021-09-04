@@ -8,7 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.AppCompatButton
 import com.example.carrot.Network.RetrofitClient
 import com.example.carrot.R
-import com.example.carrot.Response.TestResponse
+import com.example.carrot.Response.UserResponse
 import com.example.carrot.ResponseCode
 import com.example.carrot.Service.AuthService
 import kotlinx.android.synthetic.main.activity_login.*
@@ -35,7 +35,9 @@ class LogInActivity : AppCompatActivity() {
 
     private fun initView() {
         btnLogIn.setOnClickListener {
-            login()
+            val intent = Intent(this, MainActivity::class.java)
+            startActivity(intent)
+        //login()
         }
 
         tvJoin.setOnClickListener {
@@ -53,14 +55,14 @@ class LogInActivity : AppCompatActivity() {
         val password = etLogInPassword.text.toString()
 
         val callUser = loginService.login(phone, password)
-        callUser.enqueue(object: Callback<TestResponse> {
-            override fun onResponse(call: Call<TestResponse>, response: Response<TestResponse>) {
+        callUser.enqueue(object: Callback<UserResponse> {
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
                 if(response.isSuccessful && response.code() == ResponseCode.SUCCESS_POST) {
 
                     Log.d("LogInActivity: login(): onResponse:: ", "SUCCESS, ${response.body().toString()}")
                 }
             }
-            override fun onFailure(call: Call<TestResponse>, t: Throwable) {
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
                 Log.d("LogInActivity: login(): onFailure:: ", "$t")
             }
         })
