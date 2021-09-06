@@ -5,4 +5,7 @@
     <string name="preference_file_key">CarrotMarket</string>
     <string name="join">계정이 없으신가요? <b><u>가입하기</u></b></string>
     <string name="BASE_URL">http://ec2-3-34-172-246.ap-northeast-2.compute.amazonaws.com:8080/</string>
+    <string name="chat_fav_view">채팅 %1$d개 · 관심 %2$d · 조회 %3$d</string>
+    <string name="no_proposal">가격제안불가</string>
+    <string name="ok_proposal">가격제안가능</string>
 </resources>
