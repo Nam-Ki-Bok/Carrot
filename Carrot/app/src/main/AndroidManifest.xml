@@ -30,5 +30,6 @@
         <activity android:name=".View.AddItemActivity"
             android:windowSoftInputMode="adjustPan"/>
         <activity android:name=".View.ItemSelectedActivity" />
+        <activity android:name=".View.DetailSaleActivity" />
     </application>
 </manifest>

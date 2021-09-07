@@ -287,7 +287,6 @@ class AddItemActivity : AppCompatActivity() {
         Log.d("AddItemActivity: prepareFilePart::", fileUri.toString())
         val file = File(fileUri.path)
         val requestBody = RequestBody.create(MediaType.parse("image/*"), file)
-
         return MultipartBody.Part.createFormData(partName, file.name, requestBody)
     }
 

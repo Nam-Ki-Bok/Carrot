@@ -6,8 +6,8 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.android.parcel.Parcelize
 
 data class UserResponse(
-    @SerializedName("test")
-    var test: String
+    @SerializedName("signUp")
+    var signUp: String
 )
 
 @Parcelize
