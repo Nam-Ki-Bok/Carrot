@@ -1,6 +1,8 @@
 package com.example.carrot.Service
 
+import com.example.carrot.Response.Data
 import com.example.carrot.Response.UserResponse
+import com.google.gson.annotations.SerializedName
 import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Response
@@ -21,12 +23,13 @@ interface AuthService {
         @Field("phone") phone: String,
         @Field("password") password: String,
         @Field("auth") auth: String
-    ): Call<UserResponse>
+    ): Call<ResponseBody>
 
     @FormUrlEncoded
     @POST("api/user/login")
     fun login(
         @Field("phone") phone: String,
         @Field("password") password: String
-    ): Call<UserResponse>
+    ): Call<List<UserResponse>>
 }
+

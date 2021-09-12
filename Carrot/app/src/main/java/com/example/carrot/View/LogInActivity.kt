@@ -55,14 +55,14 @@ class LogInActivity : AppCompatActivity() {
         val password = etLogInPassword.text.toString()
 
         val callUser = loginService.login(phone, password)
-        callUser.enqueue(object: Callback<UserResponse> {
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+        callUser.enqueue(object: Callback <List<UserResponse>> {
+            override fun onResponse(call: Call<List<UserResponse>>, response: Response<List<UserResponse>>) {
                 if(response.isSuccessful && response.code() == ResponseCode.SUCCESS_POST) {
 
                     Log.d("LogInActivity: login(): onResponse:: ", "SUCCESS, ${response.body().toString()}")
                 }
             }
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
                 Log.d("LogInActivity: login(): onFailure:: ", "$t")
             }
         })
