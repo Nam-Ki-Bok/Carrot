@@ -28,6 +28,7 @@ import com.example.carrot.Service.SaleService
 import com.example.carrot.Util
 import kotlinx.android.synthetic.main.activity_additem.*
 import okhttp3.MediaType
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -283,12 +284,14 @@ class AddItemActivity : AppCompatActivity() {
         })
     }
 
-    private fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
+
+   private fun prepareFilePart(partName: String, fileUri: Uri): MultipartBody.Part {
         Log.d("AddItemActivity: prepareFilePart::", fileUri.toString())
         val file = File(fileUri.path)
-        val requestBody = RequestBody.create(MediaType.parse("image/*"), file)
+        val requestBody = RequestBody.create("image/*".toMediaTypeOrNull(), file)
         return MultipartBody.Part.createFormData(partName, file.name, requestBody)
     }
+
 
     private fun showToast() {
         Toast.makeText(this, "거래글 올리기 성공", Toast.LENGTH_SHORT).show()

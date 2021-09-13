@@ -9,14 +9,18 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.commit
 import com.example.carrot.Network.RetrofitClient
 import com.example.carrot.R
+import com.example.carrot.Response.Data
 import com.example.carrot.Response.User
 import com.example.carrot.Response.UserResponse
 import com.example.carrot.ResponseCode
 import com.example.carrot.Service.AuthService
+import com.example.carrot.View.LogInActivity
+import com.google.gson.JsonObject
 import kotlinx.android.synthetic.main.activity_additem.*
 import kotlinx.android.synthetic.main.activity_join.*
 import kotlinx.android.synthetic.main.fragment_join.*
 import okhttp3.RequestBody
+import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -25,6 +29,8 @@ import retrofit2.Retrofit
 class JoinFragment : Fragment(R.layout.fragment_join) {
     private lateinit var retrofit: Retrofit
     private lateinit var joinService: AuthService
+
+    private var join: UserResponse? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -136,45 +142,26 @@ class JoinFragment : Fragment(R.layout.fragment_join) {
 
         Log.d("test","Next Button Clicked")
         moveNext(name, phoneNum, password)
-        /*callUser.enqueue(object : Callback<Void> {
-            override fun onResponse(call: Call<Void>, response: Response<Void>) {
-                if (response.isSuccessful) {
-                    when (response.code()) {
-                        ResponseCode.SUCCESS_GET -> {
-                            //가입가능 유저
-                            tilPhoneNum.error = null
-                            moveNext(name, phoneNum, password)
-                        }
-
-                    }
-                } else {
-                    //이미 존재하는 유저
-                    tilPhoneNum.error = "이미 가입된 휴대폰 번호입니다."
-                }
-            }
-
-            override fun onFailure(call: Call<Void>, t: Throwable) {
-                Log.e("Join", "실패 : $t")
-            }
-        })*/
     }
 
     private fun moveNext(name: String, phoneNum: String, password: String) {
         if (!name.isNullOrEmpty() && !phoneNum.isNullOrEmpty() && !password.isNullOrEmpty()) {
-            val callSignUp = joinService.signUp(name, phoneNum, password, "ROLE_ADMIN,ROLE_USER")
 
-            callSignUp.enqueue(object : Callback<UserResponse> {
-                override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                    if (response.isSuccessful && response.code() == ResponseCode.SUCCESS_POST) {
-                        Log.d("JoinFragment: onResponse: Success:: ", "${response.body().toString()}")
+            val join = joinService.signUp(name, phoneNum, password, "ROLE_ADMIN,ROLE_USER")
+
+            join.enqueue(object: Callback<ResponseBody> {
+                override fun onResponse(call: Call<ResponseBody>, response: Response<ResponseBody>) {
+                    if(response.isSuccessful) {
+                        Log.d("test", "${response.body()!!.string()}")
                         finish()
                     }
                 }
 
-                override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                    Log.e("JoinFragment: onResponse: Failure:: ", "실패 : $t")
+                override fun onFailure(call: Call<ResponseBody>, t: Throwable) {
+                    Log.d("onFailure", "$t")
                 }
             })
+
         }
     }
 
